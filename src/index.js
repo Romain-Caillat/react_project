@@ -13,10 +13,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import AppBar from '@material-ui/core/AppBar';
-import Drawer from '@material-ui/core/Drawer';
-import MenuItem from '@material-ui/core/MenuItem';
+/*import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';*/
+
 
 const shops = [
   {
@@ -116,36 +117,39 @@ const users = [
   }
 ]
 
-function DrawDrawer() {
-  <div>TESTTTSTST</div>
-  {/*<Drawer width={200} openSecondary={true}>
-    <AppBar title="Tasks" />
-    {/*<MenuItem onClick={() => this.props.setDrawerOpen(false)}>Menu Item</MenuItem>
-    <MenuItem onClick={() => this.props.setDrawerOpen(false)}>Menu Item 2</MenuItem>
-  </Drawer>}*/}
-}
-
-function ifDrawer(StateOfDrawer) {
-  <pre>Primary</pre>
-  /*if (StateOfDrawer) {
-    StateOfDrawer = false
-  } else {
-    StateOfDrawer = true*/
-    DrawDrawer()
-  /*}*/
-  return null;
-}
+/*function DrawDrawer() {
+  return (
+  <div>
+    <pre>TEST</pre>
+      <Drawer anchor="Left" open="true">
+        <List>
+          <Button variant="contained" component="span">
+            shops
+          </Button>
+          <Divider/>
+          <Button variant="contained" component="span">
+            users
+          </Button>
+        </List>
+      </Drawer>
+  </div>
+  )
+}*/
 
 export default function App() {
-  var StateOfDrawer = false
+  /*const [visible, setVisible] = React.useState(false)*/
   return (
     <Router>
-      <div>
-        <Button variant="contained" component="span">
-          {ifDrawer(StateOfDrawer)}
+      {/*<div>
+        <Button variant="contained" component="span" onClick={() => {
+          setVisible(!visible)
+        }}>
+          <pre>Primary</pre>
         </Button>
       </div>
-      {/*<div style={{margin: 0, padding: 0}}>
+
+      {visible ? <DrawDrawer /> : null}*/}
+      <div style={{margin: 0, padding: 0}}>
         <Box style={{ background: '#607d8b', width: 150, height: window.innerHeight, margin: 0, padding: 0, position: 'absolute'}} sx={{ border: '3px solid black' }}>
           <pre><br/><br/><br/></pre>
           <li>
@@ -153,11 +157,11 @@ export default function App() {
           </li>
           <pre><br/><br/><br/></pre>
           <li>
-            <Link to="/listuser">user</Link>
+            <Link to="/listuser">list user</Link>
           </li>
           <pre><br/><br/><br/></pre>
           <li>
-            <Link to="/listshop">shop</Link>
+            <Link to="/listshop">list shop</Link>
           </li>
         </Box>
         <Box style={{ background: '#607d8b', width: window.innerWidth, height: 75, margin: 0, padding: 0}} sx={{ border: '3px solid black' }}>
@@ -182,7 +186,7 @@ export default function App() {
             <Home />
           </Route>
         </Switch>
-          </div>*/}
+          </div>
     </Router>
   );
 }
@@ -199,8 +203,8 @@ function PersonalUsers(user)
 function PersonalShop(shop)
 {
   return(
-      <Route path={`/users/${shop.id}`}>
-        {Users(shop)}
+      <Route path={`/shops/${shop.id}`}>
+        {Shop(shop)}
       </Route>
   )
 }
@@ -208,7 +212,7 @@ function PersonalShop(shop)
 function ListOfUser(user) {
   return (
     <React.Fragment>
-      <Table size="small" padding = 'normal' stickyHeader={true} height={10} width={10} rowHeight={10}  style={{ width: 1200, marginLeft: 250, background: '#90caf9'}}>
+      <Table size="small" padding = 'normal' stickyHeader={true} style={{ width: window.innerWidth - 170, marginLeft: 170, background: '#90caf9'}}>
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
@@ -233,7 +237,7 @@ function ListOfUser(user) {
 function ListOfShop(shop) {
   return (
     <React.Fragment>
-      <Table size="small" padding = 'normal' stickyHeader={true} height={10} width={10} rowHeight={10}  style={{ width: 1200, marginLeft: 250, background: '#90caf9'}}>
+      <Table size="small" padding = 'normal' stickyHeader={true} style={{ width: window.innerWidth - 170, marginLeft: 170, background: '#90caf9'}}>
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
@@ -246,7 +250,7 @@ function ListOfShop(shop) {
             <TableRow key={shop.id}>
               <TableCell>{shop.date}</TableCell>
               <TableCell>{shop.name}</TableCell>
-              <TableCell><Link to={`/users/${shop.id}`} activeClassName="current">user</Link></TableCell>
+              <TableCell><Link to={`/shops/${shop.id}`} activeClassName="current">shop</Link></TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -263,13 +267,27 @@ function Home() {
   )
 }
 
-function Users(shop) {
+function Users(user) {
   return (
-    <div>
+    <div style={{marginLeft: 170}}>
+      <h2>NEW USER</h2>
+      <h2>{user.name}</h2>
+      <h2>{user.link}</h2>
+      <Link to="/">Home<br/></Link>
+      <Link to="/listuser">list user</Link>
+      
+    </div>
+  )
+}
+
+function Shop(shop) {
+  return (
+    <div style={{marginLeft: 170}}>
       <h2>NEW USER</h2>
       <h2>{shop.name}</h2>
       <h2>{shop.link}</h2>
-      <Link to="/">Home</Link>
+      <Link to="/">Home<br/></Link>
+      <Link to="/listshop">list shop</Link>
     </div>
   )
 }
@@ -277,6 +295,6 @@ function Users(shop) {
 // ========================================
 
 ReactDOM.render(
-    App(),
+    <App />,
     document.getElementById('root')
 );
