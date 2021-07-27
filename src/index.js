@@ -43,25 +43,33 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
+            {shops.map (shop => {
+              return PersonalUsers(shop)
+            })}
           <Route path="/about">
             <About />
           </Route>
           <Route path="/">
             <Home />
           </Route>
-          <div>
-            {shops.map (shop =>
-            <div>
-              <Route path={`/users/${shop.id}`} activeClassName="current">
-                {Users(shop)}
-              </Route>
-            </div>
-            )}
-          </div>
+          {/*<div>
+            {shops.map (shop => {
+              return PersonalUsers(shop)
+            })}
+          </div>*/}
         </Switch>
       </div>
     </Router>
   );
+}
+
+function PersonalUsers(shop)
+{
+  return(
+      <Route path={`/users/${shop.id}`}>
+        {Users(shop)}
+      </Route>
+  )
 }
 
 function DrawHome(shop) {
@@ -93,8 +101,9 @@ function About() {
 function Users(shop) {
   return (
     <div>
-      <h2>shop.name</h2>
-      <h2>shop.link</h2>
+      <h2>NEW USER</h2>
+      <h2>{shop.name}</h2>
+      <h2>{shop.link}</h2>
     </div>
   )
 }
