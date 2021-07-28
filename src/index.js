@@ -117,9 +117,18 @@ export default function App() {
     <Router>
       <div style={{margin: 0, padding: 0}}>
         <Box style={{ background: '#607d8b', width: 150, height: window.innerHeight, margin: 0, padding: 0, position: 'absolute'}} sx={{ border: '3px solid black' }}>
-          <Link to="/">         home<br/>          </Link>
-          <Link to="/listuser">         user <br/>          </Link>
-          <Link to="/listshop">shop</Link>
+          <pre><br/><br/><br/></pre>
+          <li>
+            <Link to="/">home</Link>
+          </li>
+          <pre><br/><br/><br/></pre>
+          <li>
+            <Link to="/listuser">user</Link>
+          </li>
+          <pre><br/><br/><br/></pre>
+          <li>
+            <Link to="/listshop">shop</Link>
+          </li>
         </Box>
         <Box style={{ background: '#607d8b', width: window.innerWidth, height: 75, margin: 0, padding: 0}} sx={{ border: '3px solid black' }}>
           <Typography style={{marginLeft: window.innerWidth / 2}} component="h1" variant="h3" color="primary" gutterBottom>
