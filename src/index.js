@@ -12,8 +12,58 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const shops = [
+  {
+    id:1,
+    name: "TEST",
+    date: "20/11/2002",
+    link: "https://youtube.com/"
+  },
+  {
+    id:2,
+    name:"TEST2",
+    link: "https://youtube.com/"
+  },
+  {
+    id: 3,
+    name:"TEST3",
+    link: "https://youtube.com/"
+  },
+  {
+    id: 4,
+    name:"TEST4",
+    link: "https://youtube.com/"
+  },
+  {
+    id: 5,
+    name:"TEST5",
+    link: "https://youtube.com/"
+  },
+  {
+    id: 6,
+    name:"TEST6",
+    link: "https://youtube.com/"
+  },
+  {
+    id: 7,
+    name:"TEST7",
+    link: "https://youtube.com/"
+  },
+  {
+    id: 8,
+    name:"TEST8",
+    link: "https://youtube.com/"
+  },
+  {
+    id: 9,
+    name:"SHOP9",
+    link: "https://youtube.com/"
+  }
+]
+
+const users = [
   {
     id:1,
     name: "TEST",
@@ -65,18 +115,29 @@ const shops = [
 export default function App() {
   return (
     <Router>
-      <div>
-        <div style={{ background: '#607d8b', width: 1200, height: 75, marginLeft: 250 }}>
-          <Typography style={{marginLeft: 500}} component="h2" variant="h6" color="primary" gutterBottom>
-            Liste des sites
+      <div style={{margin: 0, padding: 0}}>
+        <Box style={{ background: '#607d8b', width: 150, height: window.innerHeight, margin: 0, padding: 0, position: 'absolute'}} sx={{ border: '3px solid black' }}>
+          <Link to="/">         home<br/>          </Link>
+          <Link to="/listuser">         user <br/>          </Link>
+          <Link to="/listshop">shop</Link>
+        </Box>
+        <Box style={{ background: '#607d8b', width: window.innerWidth, height: 75, margin: 0, padding: 0}} sx={{ border: '3px solid black' }}>
+          <Typography style={{marginLeft: window.innerWidth / 2}} component="h1" variant="h3" color="primary" gutterBottom>
+            Back-office
           </Typography>
-        </div>
+        </Box>
         <Switch>
             {shops.map (shop => {
-              return PersonalUsers(shop)
+              return PersonalShop(shop)
             })}
-          <Route path="/about">
-            <About />
+            {users.map (user => {
+              return PersonalUsers(user)
+            })}
+          <Route path="/listuser">
+            <ListOfUser />
+          </Route>
+          <Route path="/listshop">
+            <ListOfShop />
           </Route>
           <Route path="/">
             <Home />
@@ -87,7 +148,16 @@ export default function App() {
   );
 }
 
-function PersonalUsers(shop)
+function PersonalUsers(user)
+{
+  return(
+      <Route path={`/users/${user.id}`}>
+        {Users(user)}
+      </Route>
+  )
+}
+
+function PersonalShop(shop)
 {
   return(
       <Route path={`/users/${shop.id}`}>
@@ -96,7 +166,32 @@ function PersonalUsers(shop)
   )
 }
 
-function DrawHome(shops) {
+function ListOfUser(user) {
+  return (
+    <React.Fragment>
+      <Table size="small" padding = 'normal' stickyHeader={true} height={10} width={10} rowHeight={10}  style={{ width: 1200, marginLeft: 250, background: '#90caf9'}}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Date</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>link User</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {users.map((user) => (
+            <TableRow key={user.id}>
+              <TableCell>{user.date}</TableCell>
+              <TableCell>{user.name}</TableCell>
+              <TableCell><Link to={`/users/${user.id}`} activeClassName="current">user</Link></TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </React.Fragment>
+  )
+}
+
+function ListOfShop(shop) {
   return (
     <React.Fragment>
       <Table size="small" padding = 'normal' stickyHeader={true} height={10} width={10} rowHeight={10}  style={{ width: 1200, marginLeft: 250, background: '#90caf9'}}>
@@ -123,14 +218,10 @@ function DrawHome(shops) {
 
 function Home() {
   return (
-    <div className="MainPage">
-      {DrawHome(shops)}
+    <div className="MainPage" style={{margin: 0, padding: 0}}>
+      
     </div>
   )
-}
-
-function About() {
-  return <h2>About</h2>;
 }
 
 function Users(shop) {
