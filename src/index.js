@@ -13,6 +13,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import AppBar from '@material-ui/core/AppBar';
+import Drawer from '@material-ui/core/Drawer';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 
 const shops = [
   {
@@ -112,10 +116,36 @@ const users = [
   }
 ]
 
+function DrawDrawer() {
+  <div>TESTTTSTST</div>
+  {/*<Drawer width={200} openSecondary={true}>
+    <AppBar title="Tasks" />
+    {/*<MenuItem onClick={() => this.props.setDrawerOpen(false)}>Menu Item</MenuItem>
+    <MenuItem onClick={() => this.props.setDrawerOpen(false)}>Menu Item 2</MenuItem>
+  </Drawer>}*/}
+}
+
+function ifDrawer(StateOfDrawer) {
+  <pre>Primary</pre>
+  /*if (StateOfDrawer) {
+    StateOfDrawer = false
+  } else {
+    StateOfDrawer = true*/
+    DrawDrawer()
+  /*}*/
+  return null;
+}
+
 export default function App() {
+  var StateOfDrawer = false
   return (
     <Router>
-      <div style={{margin: 0, padding: 0}}>
+      <div>
+        <Button variant="contained" component="span">
+          {ifDrawer(StateOfDrawer)}
+        </Button>
+      </div>
+      {/*<div style={{margin: 0, padding: 0}}>
         <Box style={{ background: '#607d8b', width: 150, height: window.innerHeight, margin: 0, padding: 0, position: 'absolute'}} sx={{ border: '3px solid black' }}>
           <pre><br/><br/><br/></pre>
           <li>
@@ -152,7 +182,7 @@ export default function App() {
             <Home />
           </Route>
         </Switch>
-      </div>
+          </div>*/}
     </Router>
   );
 }
