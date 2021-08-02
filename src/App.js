@@ -140,7 +140,7 @@ function PrintMenu() {
   )
 }
 
-function SwitchRouter(listuser, listshop) {
+function SwitchRouter({listuser, listshop}) {
   return (
     <Switch>
       {listshop.map (shop => {

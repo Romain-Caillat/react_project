@@ -9,7 +9,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-export function ListOfUser(users) {
+export function ListOfUser({listuser}) {
     return (
       <React.Fragment>
       <Table size="small" padding = 'normal' stickyHeader={true} style={{ width: window.innerWidth - 170, marginLeft: 170, background: '#90caf9'}}>
@@ -21,7 +21,7 @@ export function ListOfUser(users) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map((user) => (
+          {listuser.map(user => (
             <TableRow key={user.id}>
               <TableCell>{user.date}</TableCell>
               <TableCell>{user.name}</TableCell>

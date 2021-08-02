@@ -9,7 +9,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-export function ListOfShop(shops) {
+export function ListOfShop({listshop}) {
     return (
       <React.Fragment>
         <Table size="small" padding = 'normal' stickyHeader={true} style={{ width: window.innerWidth - 170, marginLeft: 170, background: '#90caf9'}}>
@@ -21,7 +21,7 @@ export function ListOfShop(shops) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {shops.map((shop) => (
+            {listshop.map(shop => (
               <TableRow key={shop.id}>
                 <TableCell>{shop.date}</TableCell>
                 <TableCell>{shop.name}</TableCell>
