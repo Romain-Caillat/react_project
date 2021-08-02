@@ -63,7 +63,7 @@ var users = [
   {
     id:1,
     name: "TEST",
-    date: "20/11/2002",
+    date: "20/11/2022",
     link: "https://youtube.com/"
   },
   {
@@ -144,10 +144,10 @@ function SwitchRouter({listuser, listshop}) {
   return (
     <Switch>
       {listshop.map (shop => {
-        <PersonalShop shop={shop}/>
+        return (PersonalShop(shop))
       })}
       {listuser.map ((user) => {
-        <PersonalUsers user={user}/>
+        return (PersonalUsers(user))
       })}
       <Route path="/listuser">
           <ListOfUser listuser={users}/>

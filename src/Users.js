@@ -25,7 +25,7 @@ export function ListOfUser({listuser}) {
             <TableRow key={user.id}>
               <TableCell>{user.date}</TableCell>
               <TableCell>{user.name}</TableCell>
-              <TableCell><Link to={`/users/${user.id}`} activeClassName="current">user</Link></TableCell>
+              <TableCell><Link to={`/listuser/${user.id}`} activeClassName="current">user</Link></TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -49,7 +49,7 @@ function Users(user) {
 
 export function PersonalUsers(user) {
   return(
-      <Route path={`/users/${user.id}`}>
+      <Route path={`/listuser/${user.id}`}>
         {Users(user)}
       </Route>
   )

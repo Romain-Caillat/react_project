@@ -25,7 +25,7 @@ export function ListOfShop({listshop}) {
               <TableRow key={shop.id}>
                 <TableCell>{shop.date}</TableCell>
                 <TableCell>{shop.name}</TableCell>
-                <TableCell><Link to={`/shops/${shop.id}`} activeClassName="current">shop</Link></TableCell>
+                <TableCell><Link to={`/listshop/${shop.id}`} activeClassName="current">shop</Link></TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -48,8 +48,8 @@ function Shop(shop) {
 
 export function PersonalShop(shop) {
   return(
-      <Route path={`/shops/${shop.id}`}>
-        {Shop(shop)}
+      <Route path={`/listshop/${shop.id}`}>
+        <Shop shop={shop} />
       </Route>
   )
 }
