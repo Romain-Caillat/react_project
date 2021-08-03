@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,10 +7,10 @@ import {
 } from "react-router-dom";
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import {  PersonalUsers, ListOfUser, } from "./Users"
+import {  PersonalUsers, ListOfUser, EditPersonalUser, } from "./Users"
 import { PersonalShop, ListOfShop, } from "./Shop"
 
-var shops = [
+const shops = [
   {
     id:1,
     name: "TEST",
@@ -57,9 +57,9 @@ var shops = [
     name:"SHOP9",
     link: "https://youtube.com/"
   }
-]
+];
   
-var users = [
+const users = [
   {
     id:1,
     name: "TEST",
@@ -106,7 +106,7 @@ var users = [
     name:"TEST9",
     link: "https://youtube.com/"
   }
-]
+];
 
 function Home() {
   return (
@@ -140,14 +140,17 @@ function PrintMenu() {
   )
 }
 
-function SwitchRouter({listuser, listshop}) {
+function SwitchRouter({listuser, listshop}, setUsers) {
   return (
     <Switch>
       {listshop.map (shop => {
-        return (PersonalShop(shop))
+        return PersonalShop(shop)
       })}
-      {listuser.map ((user) => {
-        return (PersonalUsers(user))
+      {listuser.map (user => {
+        return PersonalUsers(user)
+      })}
+      {listuser.map (user => {
+        return EditPersonalUser(user, {listuser}, setUsers)
       })}
       <Route path="/listuser">
           <ListOfUser listuser={users}/>
@@ -163,14 +166,14 @@ function SwitchRouter({listuser, listshop}) {
 }
 
 export default function App() {
-  const [listuser, setUsers] = React.useState(users);
-  const [listshop, setShops] = React.useState(shops);
+  const [listuser, setUsers] = useState(users);
+  const [listshop, setShops] = useState(shops);
 
   return (
       <Router>
         <div style={{margin: 0, padding: 0}}>
           <PrintMenu/>
-          <SwitchRouter listuser={listuser} listshop={listshop}/>
+          <SwitchRouter listuser={listuser} listshop={listshop} setUsers={setUsers}/>
         </div>
       </Router>
   )

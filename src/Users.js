@@ -8,6 +8,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Divider from '@material-ui/core/Divider';
 
 export function ListOfUser({listuser}) {
     return (
@@ -34,23 +35,54 @@ export function ListOfUser({listuser}) {
     )
 }
 
-function Users(user) {
+export function Edit_User({listuser, user, setUsers}) {
+ let tmp_state = [...listuser];
+ let tmp_user = [tmp_state[user.id]];
+ var Name = "undifined"
+ var Link
+  return (
+    <div style={{marginLeft: 170}}>
+      <form>
+        <h4 style={{margin: 0, padding: 0}}>Name</h4>
+        <input type="text" name="name" placeholder={Name} />
+        <button type="button" onClick={() => {tmp_user.name = Name}}>modif</button>
+        <Divider/>
+        <h4 style={{margin: 0, padding: 0}}>Link</h4>
+        <input type="text" name="link" placeholder={Link} />
+        <button type="button" onClick={() => {listuser[user.id].link = Link}}>modif</button>
+      </form>
+      {setUsers( tmp_state )}
+    </div>
+  )
+}
+
+function Users({user}) {
   return (
     <div style={{marginLeft: 170}}>
       <h2>NEW USER</h2>
       <h2>{user.name}</h2>
       <h2>{user.link}</h2>
       <Link to="/">Home<br/></Link>
-      <Link to="/listuser">list user</Link>
-      
+      <Link to="/listuser">list user<br/></Link>
+      {<Link to={`/editusers/${user.id}`} activeClassName="current">edit user</Link>}
     </div>
+  )
+}
+
+export function EditPersonalUser(user, {listuser, setUsers})
+{
+  return (
+    <Route path={`/editusers/${user.id}`}>
+      {console.log([...listuser])}
+      <Edit_User user={user} listuser={listuser} setUsers={setUsers()} />
+    </Route>
   )
 }
 
 export function PersonalUsers(user) {
   return(
       <Route path={`/listuser/${user.id}`}>
-        {Users(user)}
+        <Users user={user} />
       </Route>
   )
 }

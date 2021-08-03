@@ -34,7 +34,7 @@ export function ListOfShop({listshop}) {
     )
 }
 
-function Shop(shop) {
+function Shop({shop}) {
   return (
     <div style={{marginLeft: 170}}>
       <h2>NEW USER</h2>
