@@ -140,7 +140,7 @@ function PrintMenu() {
   )
 }
 
-function SwitchRouter({listuser, listshop}, setUsers) {
+function SwitchRouter({listuser, listshop, setUsers}) {
   return (
     <Switch>
       {listshop.map (shop => {
@@ -150,10 +150,10 @@ function SwitchRouter({listuser, listshop}, setUsers) {
         return PersonalUsers(user)
       })}
       {listuser.map (user => {
-        return EditPersonalUser(user, {listuser}, setUsers)
+        return EditPersonalUser({user, listuser, setUsers})
       })}
       <Route path="/listuser">
-          <ListOfUser listuser={users}/>
+          <ListOfUser listuser={listuser}/>
       </Route>
       <Route path="/listshop">
           <ListOfShop listshop={shops}/>

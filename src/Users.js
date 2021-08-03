@@ -37,21 +37,26 @@ export function ListOfUser({listuser}) {
 
 export function Edit_User({listuser, user, setUsers}) {
  let tmp_state = [...listuser];
- let tmp_user = [tmp_state[user.id]];
- var Name = "undifined"
+ let tmp_user = { ...tmp_state[user.id - 1] };
+ var Name = "Entrez le nom"
+ var tmp_name = ""
  var Link
   return (
     <div style={{marginLeft: 170}}>
       <form>
         <h4 style={{margin: 0, padding: 0}}>Name</h4>
-        <input type="text" name="name" placeholder={Name} />
-        <button type="button" onClick={() => {tmp_user.name = Name}}>modif</button>
+        <input type="text" name="name" placeholder={Name} onChange={(evt) => { tmp_name = evt.target.value }}/>
+        <button type="button" onClick={() => {
+          tmp_user.name = tmp_name
+          tmp_state[user.id - 1] = tmp_user
+          setUsers (tmp_state)
+          console.log([...listuser])
+          }}>modif</button>
         <Divider/>
         <h4 style={{margin: 0, padding: 0}}>Link</h4>
         <input type="text" name="link" placeholder={Link} />
         <button type="button" onClick={() => {listuser[user.id].link = Link}}>modif</button>
       </form>
-      {setUsers( tmp_state )}
     </div>
   )
 }
@@ -69,12 +74,11 @@ function Users({user}) {
   )
 }
 
-export function EditPersonalUser(user, {listuser, setUsers})
+export function EditPersonalUser({user, listuser, setUsers})
 {
   return (
     <Route path={`/editusers/${user.id}`}>
-      {console.log([...listuser])}
-      <Edit_User user={user} listuser={listuser} setUsers={setUsers()} />
+      <Edit_User user={user} listuser={listuser} setUsers={setUsers} />
     </Route>
   )
 }
